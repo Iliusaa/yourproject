@@ -1,23 +1,32 @@
 package org.yourcompany.yourproject;
 
 public class Komp{
-    String name;
+    String namePerson;
     byte components;
-    String []partmodel;
-    float []weight;
-    float []year;
-    double []price;
+    String partModel[];
+    float weight[];
+    float year[];
+    double price[];
     
-    public Komp(){
+    Komp(){
+        namePerson = "Ilia";
+        components = 10;
+        partModel = new String[1];
+        for (int i = 0; i < partModel.length; i++) {
+            partModel[i]="amd";
+        }
         
     }
 
-    public Komp(byte components, String name, String[] partmodel, double[] price, float[] weight, float[] year) {
+    Komp(byte components, String namePerson) {
         this.components = components;
-        this.name = name;
-        this.partmodel = partmodel;
-        this.price = price;
-        this.weight = weight;
-        this.year = year;
+        this.namePerson = namePerson;
+    }
+
+    public void println(String print){
+        System.out.println(print);
+    }
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
     }
 }

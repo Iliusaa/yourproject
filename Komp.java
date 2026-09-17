@@ -15,7 +15,18 @@ public class Komp{
         for (int i = 0; i < partModel.length; i++) {
             partModel[i]="amd";
         }
-        
+        weight = new float[1];
+        for (int i = 0; i < weight.length; i++) {
+            weight[i]=6f;
+        }
+        year = new float[1];
+        for (int i = 0; i < year.length; i++) {
+            year[i]=3f;
+        }
+        price = new double[1];
+        for (int i = 0; i < price.length; i++) {
+            price[i]=3;
+        }
     }
 
     Komp(byte components, String namePerson) {

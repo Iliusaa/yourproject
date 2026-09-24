@@ -206,43 +206,84 @@ public class Komp {
         println("Average year: " + averageYear());
     }
 
+
     public void inputKomp() {
+    Scanner scanner = new Scanner(System.in);
 
-        Scanner scanner = new Scanner(System.in);
+    System.out.print("Enter owner name: ");
+    namePerson = scanner.nextLine();
 
-        System.out.print("Enter owner's name: ");
-        namePerson = scanner.nextLine();
-
-        System.out.print("Enter number of components: ");
+    // Проверка количества компонентов
+    do {
+        System.out.print("Enter number of components (1-5): ");
         components = scanner.nextByte();
 
-        scanner.nextLine();
+        if (components < 1 || components > 5) {
+            System.out.println("Error! Number of components must be from 1 to 5.");
+        }
 
-        partModel = new String[components];
-        weight = new float[components];
-        year = new float[components];
-        price = new double[components];
+    } while (components < 1 || components > 5);
 
-        for (int i = 0; i < components; i++) {
+    // Создаём массивы нужного размера
+    partModel = new String[components];
+    weight = new float[components];
+    year = new float[components];
+    price = new double[components];
 
-            System.out.println();
-            System.out.println("Component " + (i + 1));
+    scanner.nextLine();
 
+    for (int i = 0; i < components; i++) {
+        System.out.println("\nComponent " + (i + 1));
+
+        // Проверка названия
+        do {
             System.out.print("Enter model/manufacturer: ");
             partModel[i] = scanner.nextLine();
 
-            System.out.print("Enter weight: ");
+            if (partModel[i].trim().isEmpty()) {
+                System.out.println("Error! Model cannot be empty.");
+            }
+
+        } while (partModel[i].isBlank());
+
+        // Проверка веса
+        do {
+            System.out.print("Enter weight in kg (0.1-10): ");
             weight[i] = scanner.nextFloat();
 
-            System.out.print("Enter year: ");
+            if (weight[i] < 0.1f || weight[i] > 10) {
+                System.out.println("Error! Weight must be from 0.1 to 10 kg.");
+            }
+
+        } while (weight[i] < 0.1f || weight[i] > 10);
+
+        // Проверка года
+        do {
+            System.out.print("Enter production year (1995-2026): ");
             year[i] = scanner.nextFloat();
 
-            System.out.print("Enter price: ");
+            if (year[i] < 1995 || year[i] > 2026) {
+                System.out.println("Error! Year must be from 1995 to 2026.");
+            }
+
+        } while (year[i] < 1995 || year[i] > 2026);
+
+        // Проверка цены
+        do {
+            System.out.print("Enter price (1-1000): ");
             price[i] = scanner.nextDouble();
 
-            scanner.nextLine();
-        }
+            if (price[i] <= 0 || price[i] > 1000) {
+                System.out.println("Error! Price must be from 1 to 10000.");
+            }
+
+        } while (price[i] <= 0 || price[i] > 1000);
+
+        scanner.nextLine();
     }
+
+    System.out.println("\nComputer was successfully entered!");
+}
 
     public void randomFill() {
 

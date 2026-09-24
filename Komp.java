@@ -310,56 +310,67 @@ public class Komp {
         return sum / year.length;
     }
 
-    public void compareActuality(Komp other) {
-        System.out.println("First Komp owner: " + namePerson);
-        System.out.println("Average year: " + averageYear());
+public void compareActuality(Komp other) {
+
+    System.out.println("First Komp owner: " + namePerson);
+    System.out.println("Average year: " + averageYear());
+    System.out.println();
+
+    System.out.println("Second Komp owner: " + other.namePerson);
+    System.out.println("Average year: " + other.averageYear());
+    System.out.println();
+
+    if (averageYear() < other.averageYear()) {
+
+        System.out.println("The first Komp is older.");
+        System.out.println("Upgrading first Komp...");
+
         System.out.println();
-        System.out.println("Second Komp owner: " + other.namePerson);
-        System.out.println("Average year: " + other.averageYear());
-        System.out.println();
-        if (averageYear() < other.averageYear()) {
+        System.out.println("BEFORE UPGRADE:");
+        printKomp();
 
-            System.out.println("The first Komp is older.");
-            System.out.println("Upgrading first Komp...");
+        setComponents(other.components);
 
-            System.out.println();
-            System.out.println("BEFORE UPGRADE:");
-            printKomp();
+        for (int i = 0; i < components; i++) {
 
-            for (int i = 0; i < components; i++) {
-                setYear(i, other.year[i]);
-                setPrice(i, other.price[i]);
-                setPartModel(i, other.partModel[i]);
-            }
-
-            System.out.println();
-            System.out.println("AFTER UPGRADE:");
-            printKomp();
-
-        } else if (averageYear() > other.averageYear()) {
-
-            System.out.println("The second Komp is older.");
-            System.out.println("Upgrading second Komp...");
-
-            System.out.println();
-            System.out.println("BEFORE UPGRADE:");
-            other.printKomp();
-
-            for (int i = 0; i < other.components; i++) {
-                other.setYear(i, year[i]);
-                other.setPrice(i, price[i]);
-                other.setPartModel(i, partModel[i]);
-            }
-
-            System.out.println();
-            System.out.println("AFTER UPGRADE:");
-            other.printKomp();
-
-        } else {
-
-            System.out.println("Both Komps have the same average year.");
+            setYear(i, other.year[i]);
+            setPrice(i, other.price[i]);
+            setPartModel(i, other.partModel[i]);
+            setWeight(i, other.weight[i]);
         }
+
+        System.out.println();
+        System.out.println("AFTER UPGRADE:");
+        printKomp();
+
+    } else if (averageYear() > other.averageYear()) {
+
+        System.out.println("The second Komp is older.");
+        System.out.println("Upgrading second Komp...");
+
+        System.out.println();
+        System.out.println("BEFORE UPGRADE:");
+        other.printKomp();
+        other.setComponents(components);
+
+        for (int i = 0; i < other.components; i++) {
+
+            other.setYear(i, year[i]);
+            other.setPrice(i, price[i]);
+            other.setPartModel(i, partModel[i]);
+            other.setWeight(i, weight[i]);
+        }
+
+        System.out.println();
+        System.out.println("AFTER UPGRADE:");
+        other.printKomp();
+
+    } else {
+
+        System.out.println("Both Komps have the same average year.");
     }
+}
+
 
     public static void compareWeight(Komp first, Komp second) {
         System.out.println();
@@ -381,8 +392,8 @@ public class Komp {
     public static void main(String[] args) {
         Komp Pervii = new Komp();
 
-        System.out.println("Komp 1:");
-        Pervii.printKomp();
+       // System.out.println("Komp 1:");
+       // Pervii.printKomp();
 
         Komp Vtoroi = new Komp("Sanea", (byte)4);
 
@@ -406,52 +417,57 @@ public class Komp {
         Vtoroi.setPrice(2, 300);
         Vtoroi.setPrice(3, 200);
 
-        System.out.println();
-        System.out.println("Komp 2:");
-        Vtoroi.printKomp();
+       // System.out.println();
+       // System.out.println("Komp 2:");
+      //  Vtoroi.printKomp();
 
-
+       // System.out.println();
         Komp Tretii = new Komp("Dima",(byte)3,"AMD",5,2019,400);
-        System.out.println("Komp 3:");
-        Tretii.printKomp();
+     //   System.out.println("Komp 3:");
+      //  Tretii.printKomp();
 
 
         Komp Klon = new Komp(Vtoroi);
-        Klon.setNamePerson("Copy Sanea");
-        System.out.println();
-        System.out.println("Komp 4 Klon:");
-        Klon.printKomp();
+        Klon.setNamePerson("Copy Sanea 4th Komp");
+        //System.out.println();
+      //  System.out.println("Komp 4 Klon:");
+       // Klon.printKomp();
 
+        //System.out.println();
         Komp Piatii = new Komp();
         Piatii.randomFill();
-        System.out.println("Random Komp):");
-        Piatii.printKomp();
+       // System.out.println("Random Komputer:");
+        //Piatii.printKomp();
 
+        Komp SvoiPC =new Komp();
+        SvoiPC.inputKomp();
 
-
-        Komp[] set = new Komp[5];
+        Komp[] set = new Komp[6];
         set[0] = Pervii;
         set[1] = Vtoroi;
         set[2] = Tretii;
         set[3] = Klon;
         set[4] = Piatii;
-
+        set[5] = SvoiPC;
         for (int i = 0; i < set.length; i++) {
 
             System.out.println();
-            System.out.println("kol-vo kompov v sisteme:" + (i + 1));
-
             set[i].printKomp();
         }
+        System.out.println();
+        System.out.println("kol-vo kompov= "+ammountKomp);
+        System.out.println();
+        Pervii.compareActuality(Tretii);
+        System.out.println();
+        Tretii.compareActuality(SvoiPC);
 
-        Pervii.compareActuality(Vtoroi);
-
-        Tretii.compareActuality(Piatii);
-
-
+        System.out.print("Comparing Default komp with Komp s parametrami 2");
         compareWeight(Pervii, Vtoroi);
-
+        System.out.println();
+        
+         System.out.print("Comparing komp s mnogo parametrov with random gen komp");
         compareWeight(Tretii, Piatii);
+        System.out.println();
 
         Komp expensive = set[0];
 
@@ -462,7 +478,7 @@ public class Komp {
             }
         }
 
-        System.out.println("Owner: " + expensive.getNamePerson());
+        System.out.println("Owner most expensive komp: " + expensive.getNamePerson());
 
         System.out.println("Total price: " + expensive.totalPrice());
 

@@ -11,28 +11,36 @@ public class Komp {
 
     public Komp() {
         ownerName = "Ilia";
-        for (int i = 0; i < 3; i++) components.add(new Component("AMD", 2.0f, 2020, 100));
+        for (int i = 0; i < 3; i++)
+            components.add(new Component("AMD", 2.0f, 2020, 100));
         amountKomp++;
     }
 
     public Komp(String ownerName, int count, String model, float weight, int year, double price) {
         this.ownerName = ownerName;
-        for (int i = 0; i < count; i++) components.add(new Component(model, weight, year, price));
+        for (int i = 0; i < count; i++)
+            components.add(new Component(model, weight, year, price));
         amountKomp++;
     }
 
     public Komp(Komp source) {
         ownerName = source.ownerName;
-        for (Component component : source.components) components.add(new Component(component));
+        for (Component component : source.components)
+            components.add(new Component(component));
         amountKomp++;
     }
 
-    public String getOwnerName() { return ownerName; }
-    public static int getAmountKomp() { return amountKomp; }
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public static int getAmountKomp() {
+        return amountKomp;
+    }
 
     public void randomFill() {
         Random random = new Random();
-        String[] models = {"AMD", "Intel", "NVIDIA", "ASUS", "MSI", "Gigabyte"};
+        String[] models = { "AMD", "Intel", "NVIDIA", "ASUS", "MSI", "Gigabyte" };
         ownerName = "User" + random.nextInt(100);
         components.clear();
         for (int i = 0; i < 2 + random.nextInt(4); i++) {
@@ -49,7 +57,8 @@ public class Komp {
             try {
                 System.out.print("Owner name: ");
                 String value = scanner.nextLine().trim();
-                if (value.isEmpty()) throw new KompException("Owner name cannot be empty.");
+                if (value.isEmpty())
+                    throw new KompException("Owner name cannot be empty.");
                 ownerName = value;
             } catch (KompException exception) {
                 flag = true;
@@ -63,7 +72,8 @@ public class Komp {
         System.out.print("Number of components (1-5): ");
         try {
             int count = Integer.parseInt(scanner.nextLine());
-            if (count < 1 || count > 5) throw new KompException("The number must be from 1 to 5.");
+            if (count < 1 || count > 5)
+                throw new KompException("The number must be from 1 to 5.");
             return count;
         } catch (NumberFormatException exception) {
             throw new KompException(exception);
@@ -81,7 +91,8 @@ public class Komp {
                     System.out.println("\nComponent " + (i + 1));
                     System.out.print("Model: ");
                     String model = scanner.nextLine().trim();
-                    if (model.isEmpty()) throw new KompException("Model cannot be empty.");
+                    if (model.isEmpty())
+                        throw new KompException("Model cannot be empty.");
                     System.out.print("Weight in kg (0.1-10): ");
                     float weight = Float.parseFloat(scanner.nextLine());
                     System.out.print("Production year (1995-2026): ");
@@ -121,33 +132,40 @@ public class Komp {
 
     public double totalPrice() {
         double sum = 0;
-        for (Component component : components) sum += component.getPrice();
+        for (Component component : components)
+            sum += component.getPrice();
         return sum;
     }
 
     public float totalWeight() {
         float sum = 0;
-        for (Component component : components) sum += component.getWeight();
+        for (Component component : components)
+            sum += component.getWeight();
         return sum;
     }
 
     public double averageYear() {
         double sum = 0;
-        for (Component component : components) sum += component.getYear();
+        for (Component component : components)
+            sum += component.getYear();
         return components.isEmpty() ? 0 : sum / components.size();
     }
 
     public void printKomp() {
         System.out.println("Owner: " + ownerName + ", components: " + components.size());
-        for (Component component : components) component.printComponent();
+        for (Component component : components)
+            component.printComponent();
         System.out.printf("Total price: %.2f; total weight: %.2f kg; average year: %.1f%n",
                 totalPrice(), totalWeight(), averageYear());
     }
 
     public static void compareWeight(Komp first, Komp second) {
         float difference = first.totalWeight() - second.totalWeight();
-        if (difference > 0) System.out.println(first.ownerName + " is heavier by " + difference + " kg.");
-        else if (difference < 0) System.out.println(second.ownerName + " is heavier by " + (-difference) + " kg.");
-        else System.out.println("Both computers have the same weight.");
+        if (difference > 0)
+            System.out.println(first.ownerName + " is heavier by " + difference + " kg.");
+        else if (difference < 0)
+            System.out.println(second.ownerName + " is heavier by " + (-difference) + " kg.");
+        else
+            System.out.println("Both computers have the same weight.");
     }
 }
